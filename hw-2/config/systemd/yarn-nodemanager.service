@@ -1,0 +1,12 @@
+[Unit]
+After=network-online.target hdfs-datanode.service
+
+[Service]
+User=hadoop
+Environment=HADOOP_CONF_DIR=/etc/hadoop
+Environment=YARN_LOG_DIR=/var/log/hadoop-yarn
+ExecStart=/opt/hadoop/bin/yarn nodemanager
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

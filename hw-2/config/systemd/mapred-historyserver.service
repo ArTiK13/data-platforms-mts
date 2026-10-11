@@ -1,0 +1,12 @@
+[Unit]
+After=network-online.target hdfs-namenode.service
+
+[Service]
+User=hadoop
+Environment=HADOOP_CONF_DIR=/etc/hadoop
+Environment=HADOOP_MAPRED_LOG_DIR=/var/log/hadoop-yarn
+ExecStart=/opt/hadoop/bin/mapred historyserver
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
