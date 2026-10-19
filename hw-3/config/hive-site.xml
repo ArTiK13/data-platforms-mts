@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <property>
+    <name>hive.metastore.uris</name>
+    <value>thrift://127.0.0.1:9083</value>
+  </property>
+  <property>
+    <name>hive.metastore.warehouse.dir</name>
+    <value>/user/hive/warehouse</value>
+  </property>
+  <property>
+    <name>hive.metastore.warehouse.external.dir</name>
+    <value>/user/hive/external</value>
+  </property>
+  <property>
+    <name>hive.server2.thrift.bind.host</name>
+    <value>127.0.0.1</value>
+  </property>
+  <property>
+    <name>hive.server2.thrift.port</name>
+    <value>10000</value>
+  </property>
+  <property>
+    <name>hive.server2.authentication</name>
+    <value>NONE</value>
+  </property>
+  <property>
+    <name>hive.server2.enable.doAs</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>hive.server2.webui.host</name>
+    <value>127.0.0.1</value>
+  </property>
+  <property>
+    <name>hive.execution.engine</name>
+    <value>mr</value>
+  </property>
+</configuration>
