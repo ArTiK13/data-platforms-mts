@@ -36,4 +36,8 @@
     <name>hive.execution.engine</name>
     <value>mr</value>
   </property>
+  <property>
+    <name>hive.aux.jars.path</name>
+    <value>file:///opt/hive/lib/commons-collections-3.2.2.jar</value>
+  </property>
 </configuration>

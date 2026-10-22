@@ -2,6 +2,12 @@
 set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/common.sh"
 
+INNER_SSH=(-i "$HOME/.ssh/team_internal" -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 -o StrictHostKeyChecking=accept-new)
+bash "$SCRIPT_DIR/hosts-setup.sh"
+for node in team-08-nn team-08-00 team-08-01; do
+    ssh "${INNER_SSH[@]}" "team@$node" 'bash -s' < "$SCRIPT_DIR/hosts-setup.sh"
+done
+
 sudo -n test -x /opt/hadoop/bin/hdfs
 "${HDFS[@]}" dfsadmin -report
 

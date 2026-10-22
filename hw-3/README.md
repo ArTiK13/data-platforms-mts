@@ -4,9 +4,11 @@
 
 Выбрали Hive 4.1.0 для Java 17 из предыдущих заданий. В задании рекомендован 4.0.0-alpha-2; поддержку Java 17 добавили в 4.1.0. [Требования Apache Hive](https://hive.apache.org/general/downloads/).
 
+Через `hive.aux.jars.path` передаём задачам MapReduce библиотеку `commons-collections-3.2.2.jar` из Hive: она нужна Hive, но в Hadoop 3.4.2 её нет.
+
 ## Запуск
 
-Нужны работающие ДЗ №1 и №2, Ubuntu 24.04 amd64 на edge, SSH-доступ к `team@2.59.83.169` и `sudo` без пароля у `team`. Hadoop 3.4.2 должен стоять в `/opt/hadoop`, конфиги - в `/etc/hadoop`. Для PostgreSQL нужен свободный порт 5432 или стандартная установка PostgreSQL Ubuntu с доступом через `sudo -u postgres`.
+Нужны работающие ДЗ №1 и №2, Ubuntu 24.04 amd64 на edge, SSH-доступ к `team@2.59.83.169` и `sudo` без пароля у `team`. На edge должен быть ключ `~/.ssh/team_internal` для доступа к остальным узлам, как в ДЗ №2. Hadoop 3.4.2 должен стоять в `/opt/hadoop`, конфиги - в `/etc/hadoop`. Для PostgreSQL нужен свободный порт 5432 или стандартная установка PostgreSQL Ubuntu с доступом через `sudo -u postgres`.
 
 Из корня репозитория:
 
@@ -15,6 +17,8 @@ bash hw-3/deploy.sh
 ```
 
 Скрипт копирует файлы в `~/hw3-hive` на edge, скачивает Hive с проверкой SHA-256, устанавливает PostgreSQL и JDBC-драйвер. Затем настраивает службы systemd, загружает данные и запускает проверку.
+
+Перед установкой `hosts-setup.sh` прописывает короткие и полные имена четырёх узлов в `/etc/hosts` с адресами от `10.8.0.10` до `10.8.0.13`. Иначе ApplicationMaster может передать задачам адрес `127.0.1.1`, недоступный с других машин. Исходный файл сохраняем в `/etc/hosts.before-hw3`.
 
 Пароль PostgreSQL хранится на edge в `/etc/hive/metastore-password` и `/etc/hive/hivemetastore-site.xml`, доступных root и группе `hadoop`. При повторном запуске сохраняем пароль и схему metastore, заменяем конфиги, перезапускаем службы и загружаем учебные данные заново. Перед этим завершите активные запросы.
 

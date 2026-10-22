@@ -11,5 +11,5 @@ if [[ $# != 0 ]]; then
 fi
 
 ssh "$EDGE" 'mkdir -p ~/hw3-hive'
-scp -r "$SCRIPT_DIR"/{common.sh,edge-deploy.sh,node-setup.sh,load-data.sh,check.sh,config,sql,data} "$EDGE:hw3-hive/"
+scp -r "$SCRIPT_DIR"/{common.sh,edge-deploy.sh,hosts-setup.sh,node-setup.sh,load-data.sh,check.sh,config,sql,data} "$EDGE:hw3-hive/"
 ssh "$EDGE" 'bash ~/hw3-hive/edge-deploy.sh'
