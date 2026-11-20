@@ -11,5 +11,4 @@ cd ~/hw5-prefect
 python3 -m venv .venv
 .venv/bin/pip install prefect==3.9.3
 bash run.sh
-bash ~/hw4-spark/check.sh
 SH
